@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+  mattermost:
+    image: mattermost/mattermost-preview
+    restart: always
+    ports:
+      - 8065:8065  
+
+  gotify:
+    image: gotify/server
+    ports:
+      - 8080:80
+    environment:
+      - GOTIFY_DEFAULTUSER_PASS=custom
+    volumes:
+      - "./data/gotify:/app/data"
+
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - 5678:5678
+    volumes:
+      - "./data/n8n:/home/node/.n8n"
