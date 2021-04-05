@@ -1,6 +1,14 @@
 version: "3.1"
 
 services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - 5678:5678
+    volumes:
+      - "./data/n8n:/home/node/.n8n"
+      
   mattermost:
     image: mattermost/mattermost-preview
     restart: always
@@ -16,10 +24,13 @@ services:
     volumes:
       - "./data/gotify:/app/data"
 
-  n8n:
-    image: n8nio/n8n
-    restart: always
+  gophish:
+    image: gophish/gophish
     ports:
-      - 5678:5678
-    volumes:
-      - "./data/n8n:/home/node/.n8n"
+      - 3333:3333
+      - 8888:80
+  
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
