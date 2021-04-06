@@ -1,0 +1,70 @@
+{
+  "name": "OnUnauth",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        260,
+        400
+      ],
+      "alwaysOutputData": false,
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a21d6bad-37d9-42d8-aad2-78949878918",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        400
+      ],
+      "webhookId": "a21d6bad-37d9-42d8-aad2-83941d77c24a",
+      "notesInFlow": true,
+      "notes": "Evilginx2 unauthorized users"
+    },
+    {
+      "parameters": {
+        "channelId": "antmpdeqxfnajniuw813ooq6ow",
+        "message": "=## We caught a noisy person\n\n\n| Data | Value |\n| ----------- | ------------------------------------------- |\n| phishlet | {{$json[\"body\"][\"phishlet\"]}} |\n| reg_url | {{$json[\"body\"][\"req_url\"]}} |\n| remote_addr | {{$json[\"body\"][\"remote_addr\"]}} |\n| user_agent | {{$json[\"body\"][\"useragent\"]}} |",
+        "attachments": [],
+        "otherOptions": {}
+      },
+      "name": "Mattermost",
+      "type": "n8n-nodes-base.mattermost",
+      "typeVersion": 1,
+      "position": [
+        600,
+        400
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "mattermostApi": "Mattermost test"
+      },
+      "notes": "Push msg phish channel"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Mattermost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "6"
+}
