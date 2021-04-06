@@ -1,0 +1,63 @@
+{
+  "name": "OnVisitForwardParamToGophish",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "path": "9fa95ea8-0b7f-49e5-b940-0aab84039a93",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ],
+      "webhookId": "9fa95ea8-0b7f-49e5-b940-0aab84039a93",
+      "notesInFlow": true,
+      "notes": "Visitor param from evilginx"
+    },
+    {
+      "parameters": {
+        "url": "=http://192.168.136.174:8888/?rid={{$json[\"query\"][\"user\"]}}",
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ],
+      "notesInFlow": true,
+      "notes": "Forward param as RID"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "8"
+}
