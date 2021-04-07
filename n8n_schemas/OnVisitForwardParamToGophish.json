@@ -13,6 +13,7 @@
     },
     {
       "parameters": {
+        "authentication": "headerAuth",
         "path": "9fa95ea8-0b7f-49e5-b940-0aab84039a93",
         "options": {}
       },
@@ -25,11 +26,14 @@
       ],
       "webhookId": "9fa95ea8-0b7f-49e5-b940-0aab84039a93",
       "notesInFlow": true,
+      "credentials": {
+        "httpHeaderAuth": "Secret Header"
+      },
       "notes": "Visitor param from evilginx"
     },
     {
       "parameters": {
-        "url": "=http://192.168.136.174:8888/?rid={{$json[\"query\"][\"user\"]}}",
+        "url": "=http://192.168.2.1:8888/?rid={{$json[\"query\"][\"user\"]}}",
         "responseFormat": "string",
         "options": {}
       },
@@ -57,7 +61,7 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {},
   "id": "8"
 }
