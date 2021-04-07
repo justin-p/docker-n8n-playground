@@ -15,6 +15,7 @@
     },
     {
       "parameters": {
+        "authentication": "headerAuth",
         "httpMethod": "POST",
         "path": "a21d6bad-37d9-42d8-aad2-78949878918",
         "options": {}
@@ -28,12 +29,15 @@
       ],
       "webhookId": "a21d6bad-37d9-42d8-aad2-83941d77c24a",
       "notesInFlow": true,
+      "credentials": {
+        "httpHeaderAuth": "Secret Header"
+      },
       "notes": "Evilginx2 unauthorized users"
     },
     {
       "parameters": {
-        "channelId": "antmpdeqxfnajniuw813ooq6ow",
-        "message": "=## We caught a noisy person\n\n\n| Data | Value |\n| ----------- | ------------------------------------------- |\n| phishlet | {{$json[\"body\"][\"phishlet\"]}} |\n| reg_url | {{$json[\"body\"][\"req_url\"]}} |\n| remote_addr | {{$json[\"body\"][\"remote_addr\"]}} |\n| user_agent | {{$json[\"body\"][\"useragent\"]}} |",
+        "channelId": "1533asrac3bupkt5ezx39spncc",
+        "message": "=## We caught a noisy person :hear_no_evil: \n\n\n| Data | Value |\n| ----------- | ------------------------------------------- |\n| phishlet | {{$json[\"body\"][\"phishlet\"]}} |\n| reg_url | {{$json[\"body\"][\"req_url\"]}} |\n| remote_addr | {{$json[\"body\"][\"remote_addr\"]}} |\n| user_agent | {{$json[\"body\"][\"useragent\"]}} |",
         "attachments": [],
         "otherOptions": {}
       },
@@ -46,7 +50,7 @@
       ],
       "notesInFlow": true,
       "credentials": {
-        "mattermostApi": "Mattermost test"
+        "mattermostApi": "Sir Phishelot"
       },
       "notes": "Push msg phish channel"
     }
@@ -64,7 +68,7 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {},
   "id": "6"
 }
