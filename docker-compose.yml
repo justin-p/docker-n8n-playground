@@ -29,7 +29,12 @@ services:
     ports:
       - 3333:3333
       - 8888:80
-  
+      - 127.0.0.1:8080:80
+    volumes:
+     - type: bind 
+       source: ./data/gophish/gophish.db
+       target: /opt/gophish/gophish.db
+       
   mailhog:
     image: mailhog/mailhog
     ports:
