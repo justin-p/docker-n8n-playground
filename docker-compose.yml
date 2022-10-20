@@ -8,12 +8,12 @@ services:
       - 5678:5678
     volumes:
       - "./data/n8n:/home/node/.n8n"
-      
+
   mattermost:
     image: mattermost/mattermost-preview
     restart: always
     ports:
-      - 8065:8065  
+      - 8065:8065
 
   gotify:
     image: gotify/server
@@ -31,10 +31,10 @@ services:
       - 8888:80
       - 127.0.0.1:8080:80
     volumes:
-     - type: bind 
-       source: ./data/gophish/gophish.db
-       target: /opt/gophish/gophish.db
-       
+      - type: bind
+        source: ./data/gophish/gophish.db
+        target: /opt/gophish/gophish.db
+
   mailhog:
     image: mailhog/mailhog
     ports:
